@@ -22,7 +22,8 @@ const Signup = (props) => {
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
       history.push("/");
-    } catch {
+    } catch (e) {
+      console.log("Could not sign up", e);
       setError("Could not signup");
     } finally {
       setLoading(false);

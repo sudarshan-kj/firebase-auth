@@ -7,8 +7,10 @@ const UpdateProfile = (props) => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
+  const profilePhotoRef = useRef();
 
-  const { currentUser, updateEmail, updatePassword } = useAuth();
+  const { currentUser, updateEmail, updatePassword, updatePhotoUrl } =
+    useAuth();
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,6 +18,7 @@ const UpdateProfile = (props) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    console.log("Current user is", currentUser.providerData);
     if (passwordRef.current.value !== passwordConfirmRef.current.value)
       return setError("Passwords do not match");
 
@@ -29,6 +32,8 @@ const UpdateProfile = (props) => {
     try {
       setError("");
       setLoading(true);
+      promises.push(updatePhotoUrl());
+
       await Promise.all(promises);
       history.push("/");
     } catch {
@@ -70,7 +75,10 @@ const UpdateProfile = (props) => {
                 placeholder="Leave this blank to keep the password same"
               />
             </Form.Group>
-
+            <Form.Group id="profilePhoto">
+              <Form.Label>Profile Photo</Form.Label>
+              <Form.Control type="file" ref={profilePhotoRef} />
+            </Form.Group>
             <Button className="w-100 mt-3" type="submit" disabled={loading}>
               Update
             </Button>
