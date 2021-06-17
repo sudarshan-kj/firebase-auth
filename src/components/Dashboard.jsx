@@ -4,7 +4,6 @@ import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 
 const Dashboard = (props) => {
-  console.log("PROPS DASHBOARD", props);
   const [error, setError] = useState("");
   const { currentUser, logout, handleProfileDelete } = useAuth();
 
