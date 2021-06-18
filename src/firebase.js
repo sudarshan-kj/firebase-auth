@@ -9,6 +9,7 @@ import "firebase/auth";
 //   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
 //   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 // });
+//dummy comment to check the auth flow
 
 const app = firebase.initializeApp({
   apiKey: "AIzaSyBD_GjdMelNfjRTTqTwzJm_O84q5hzLHSc",
